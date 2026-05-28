@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Rating App</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+    <div class="header">
+        <h1>☕ Coffee Rating Application</h1>
+        <p>Vote Your Favorite Coffee</p>
+    </div>
+
+    <div class="container">
+
+        {% for coffee in coffees %}
+
+        <div class="card">
+
+            {% if coffee[1] == 'Cappuccino' %}
+            <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=800&auto=format&fit=crop"
+            alt="coffee">
+
+            {% elif coffee[1] == 'Espresso' %}
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop"
+            alt="coffee">
+
+            {% elif coffee[1] == 'Latte' %}
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop"
+            alt="coffee">
+
+            {% else %}
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop"
+            alt="coffee">
+            {% endif %}
+
+            <div class="content">
+
+                <h2>{{ coffee[1] }}</h2>
+
+                <p class="votes">
+                    Votes: {{ coffee[2] }}
+                </p>
+
+                <a href="/vote/{{ coffee[0] }}">
+                    <button>👍 Vote Now</button>
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
